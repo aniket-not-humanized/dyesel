@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyesel - Web Server Starter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2.5em;
+            border-bottom: 5px solid #333;
+        }
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            color: #555;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <script>
+        function goToInfo() {
+            // Open the info page in a new tab
+            window.open('info.html', '_blank');
+        }
+
+        function downloadApp() {
+            // Open the info page in a new tab
+            var infoTab = window.open('info.html', '_blank');
+
+            // Start the download in the current tab after a short delay
+            setTimeout(function() {
+                window.location.href = 'DUCSetup_v4_1_1.exe'; // Replace with your actual file path
+            }, 1000); // Delay of 1 second
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        Welcome to Dyesel Web Server
+    </header>
+
+    <div class="container">
+        <h2>Start Your Web Server Easily</h2>
+        <p>Welcome to Dyesel, the easiest way to start your own web server. Follow the steps to get your server running in no time!</p>
+
+        <p><strong>Important!</strong> Before you start, make sure to read the <a href="info.html" style="color: #4CAF50;">Important Notes</a> to ensure everything is set up properly!</p>
+
+        <!-- Two buttons: One for redirecting to info page, one for downloading -->
+        <p><button onclick="goToInfo()">Go to Notes</button></p>
+        <p><button onclick="downloadApp()">Go to Notes & Download Dyesel</button></p>
+    </div>
+
+</body>
+</html>

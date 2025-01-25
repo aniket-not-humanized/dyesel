@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Notes - Dyesel</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2.5em;
+            border-bottom: 5px solid #333;
+        }
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        ol {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 15px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #FF6347;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Important Notes Before Using Dyesel
+    </header>
+
+    <div class="container">
+        <h2>Things You Need to Know Before Starting the Dyesel Web Server</h2>
+        
+        <p>Before you start using Dyesel to set up your web server, please review the following important notes:</p>
+        
+        <ol>
+            <li><span class="highlight">Ensure that your computer meets the minimum system requirements</span> for running Dyesel. The app is designed for performance and stability, but it's important to verify your system is compatible.</li>
+            <li><span class="highlight">Backup your data</span> before starting the server. While Dyesel is safe to use, it's always good practice to backup any important files or data in case of unexpected issues.</li>
+            <li><span class="highlight">Check your internet connection</span> for stability, especially if you're hosting a live web server. A reliable internet connection will ensure smooth access to your server from the outside world.</li>
+            <li><span class="highlight">Understand the basics of web hosting</span> before using Dyesel. If you're unfamiliar with web servers and ports, we recommend reviewing some basic tutorials to avoid any confusion when setting up your server.</li>
+            <li><span class="highlight">Security</span>: Make sure your firewall is configured to allow incoming connections to the necessary ports that Dyesel will be using. Always be cautious with open ports, and don't expose sensitive data.</li>
+            <li><span class="highlight">Dyesel requires administrator privileges</span> to run the server. If you're using Windows, ensure you have the proper permissions to execute the program.</li>
+            <li><span class="highlight">No need to worry about complex configurations</span>. Dyesel has an easy-to-use interface, but for more advanced setups, you might need to configure additional settings. Refer to the Dyesel documentation for more advanced features.</li>
+        </ol>
+
+        <h3>What is a Port?</h3>
+        <p>A **port** is like a gateway that allows your computer to communicate with other devices over the internet or a local network. When you run a web server like Dyesel, the server listens for requests on a specific port. The default port for web servers is usually <span class="highlight">80 (HTTP)</span> or <span class="highlight">443 (HTTPS)</span>.</p>
+        
+        <p>When you open ports on your router or firewall, you are allowing external devices to communicate with your server. It's important to make sure the correct ports are open to avoid connection issues.</p>
+
+        <h3>Why Do You Need to Open Ports?</h3>
+        <p>If you're hosting your own web server (like Dyesel), opening the necessary ports is crucial. For instance, if you want people to access your server from the internet, you'll need to make sure port <span class="highlight">80</span> (for HTTP) is open. If you're using HTTPS (secure connection), then you'll need port <span class="highlight">443</span>.</p>
+        
+        <h3>How to Open Ports</h3>
+        <p>To open ports, you’ll need to configure your router’s settings and your firewall. Here’s a general process:</p>
+        <ol>
+            <li>Log in to your router's admin interface (usually accessible through your browser, like <code>192.168.1.1</code>).</li>
+            <li>Find the **Port Forwarding** section.</li>
+            <li>Set up a new rule that forwards traffic from a specific external port (e.g., <span class="highlight">80</span> for HTTP) to the internal port on which Dyesel is listening.</li>
+            <li>Ensure your firewall is configured to allow traffic to the server’s ports. This might require adding inbound rules in your operating system’s firewall settings.</li>
+        </ol>
+
+        <h3>What is a Firewall?</h3>
+        <p>A **firewall** is a system designed to protect your computer by filtering the network traffic that comes into or leaves your computer. It can block unwanted traffic, such as malicious attacks, and help keep your server safe. However, to run Dyesel successfully, you need to make sure that your firewall allows traffic on the necessary ports, such as port 80 (HTTP).</p>
+    </div>
+
+</body>
+</html>
