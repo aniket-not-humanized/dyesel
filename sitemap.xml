@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Main Site -->
+    <url>
+        <loc>https://aniket-not-humanized.github.io/dyesel/</loc>
+        <lastmod>2025-01-26</lastmod>  <!-- Update the date whenever you update the page -->
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Sub Info Site -->
+    <url>
+        <loc>https://aniket-not-humanized.github.io/dyesel/info.html</loc>
+        <lastmod>2025-01-26</lastmod>  <!-- Update the date whenever you update the page -->
+        <priority>0.8</priority>
+    </url>
+</urlset>
