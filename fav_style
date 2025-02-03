@@ -1,4 +1,5 @@
     <style>
+        /* Centering the form */
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -8,6 +9,8 @@
             background: linear-gradient(135deg, #667eea, #764ba2);
             margin: 0;
         }
+
+        /* Form container */
         .login-box {
             background: white;
             padding: 30px;
@@ -16,6 +19,8 @@
             text-align: center;
             width: 300px;
         }
+
+        /* Input fields */
         input {
             width: 100%;
             padding: 10px;
@@ -24,6 +29,8 @@
             border-radius: 5px;
             font-size: 16px;
         }
+
+        /* Submit button */
         button {
             width: 100%;
             padding: 10px;
@@ -54,4 +61,20 @@
 	    from { opacity: 0; transform: translateY(-10px); }
 	    to { opacity: 1; transform: translateY(0); }
 	}
-</style>
+
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <h2>Login</h2>
+        <form onsubmit="check(event)">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter your username">
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter your password">
+            
+            <button type="submit">Login</button>
+        </form>
+    </div>
