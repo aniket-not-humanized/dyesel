@@ -2,14 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Sign Language Translator</title>
+    <title>Sign Language Translator</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-    
+    <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
     <style>
-
         body {
             font-family: 'Minecraft', sans-serif;
             background: url('https://www.minecraft.net/content/dam/games/minecraft/key-art/Homepage-Background.jpg') no-repeat center center fixed;
@@ -21,7 +19,7 @@
         }
 
         header {
-            background: url('https://i.imgur.com/8HGCWbX.png'); /* Minecraft Grass Block Texture */
+            background: url('https://i.imgur.com/8HGCWbX.png');
             padding: 20px;
             font-size: 28px;
             font-weight: bold;
@@ -35,7 +33,7 @@
         }
 
         button {
-            background: url('https://i.imgur.com/wzJnRCJ.png'); /* Minecraft Button Texture */
+            background: url('https://i.imgur.com/wzJnRCJ.png');
             color: white;
             border: 3px solid #2e2e2e;
             padding: 12px 24px;
@@ -78,12 +76,10 @@
             margin: 5px;
         }
 
-        /* Rolling Number Animation */
         .rolling-number {
             display: inline-block;
             overflow: hidden;
-            width: 80px;
-            height: 24px;
+            height: 1em;
             font-size: 22px;
             font-weight: bold;
             position: relative;
@@ -106,7 +102,7 @@
     </style>
 </head>
 <body>
-    <header>Minecraft Sign Language Translator</header>
+    <header>Sign Language Translator</header>
 
     <div class="content">
         <button onclick="init()">Start Webcam</button>
@@ -117,7 +113,7 @@
     <footer>&copy; 2025 Aniket Kumar Raj - Dyesel. All Rights Reserved.</footer>
 
     <script>
-        const URL = "./";  // Ensure model files are in the same folder
+        const URL = "./";
 
         let model, webcam, labelContainer, maxPredictions, isWebcamRunning = false;
 
@@ -131,20 +127,16 @@
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
 
-            // Load model
             model = await tmImage.load(modelURL, metadataURL);
             maxPredictions = model.getTotalClasses();
 
-            // Setup webcam
             webcam = new tmImage.Webcam(320, 320, true);
             await webcam.setup();
             await webcam.play();
 
-            // Clear previous webcam if exists
             document.getElementById("webcam-container").innerHTML = "";
             document.getElementById("webcam-container").appendChild(webcam.canvas);
 
-            // Create label container
             labelContainer = document.getElementById("label-container");
             labelContainer.innerHTML = "";
 
@@ -166,7 +158,6 @@
                 labelContainer.appendChild(div);
             }
 
-            // Start prediction loop
             window.requestAnimationFrame(loop);
         }
 
