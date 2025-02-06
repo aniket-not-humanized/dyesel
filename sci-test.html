@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Language Detection</title>
+    <title>Sign Language Translator</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <style>
@@ -19,14 +19,15 @@
     <div id="label-container"></div>
 
     <script>
-        const URL = "./my_model/"; // Make sure model.json is inside this folder
+        const URL = "./";  // Keep model files in the same folder as index.html
+
         let model, webcam, labelContainer, maxPredictions;
 
         async function init() {
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
 
-            // Load Teachable Machine model
+            // Load the model
             model = await tmImage.load(modelURL, metadataURL);
             maxPredictions = model.getTotalClasses();
 
@@ -36,14 +37,14 @@
             await webcam.play();
             document.getElementById("webcam-container").appendChild(webcam.canvas);
 
-            // Create labels for predictions
+            // Create label container
             labelContainer = document.getElementById("label-container");
             labelContainer.innerHTML = "";
             for (let i = 0; i < maxPredictions; i++) {
                 labelContainer.appendChild(document.createElement("div"));
             }
 
-            // Start detection loop
+            // Start prediction loop
             window.requestAnimationFrame(loop);
         }
 
@@ -55,7 +56,7 @@
 
         async function predict() {
             const prediction = await model.predict(webcam.canvas);
-            labelContainer.innerHTML = ""; // Clear previous results
+            labelContainer.innerHTML = "";  // Clear previous predictions
 
             for (let i = 0; i < maxPredictions; i++) {
                 const classPrediction = `${prediction[i].className}: ${(prediction[i].probability * 100).toFixed(2)}%`;
