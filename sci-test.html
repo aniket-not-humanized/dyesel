@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Language Translator</title>
+    <title>Minecraft Sign Language Translator</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    
     <style>
-        /* General Styling */
+        /* MINECRAFT THEME */
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('https://fonts.cdnfonts.com/s/21894/MinecraftRegular-Bmg3.otf') format('opentype');
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #eef2f3;
+            font-family: 'Minecraft', sans-serif;
+            background: url('https://www.minecraft.net/content/dam/games/minecraft/key-art/Homepage-Background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: #fff;
             margin: 0;
             padding: 0;
-            text-align: center;
-            color: #333;
         }
 
         header {
-            background-color: #4CAF50;
-            color: white;
+            background: url('https://i.imgur.com/8HGCWbX.png'); /* Minecraft Grass Block Texture */
             padding: 20px;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
+            border-bottom: 4px solid #2e2e2e;
+            color: white;
+            text-shadow: 3px 3px 2px #000;
         }
 
         .content {
@@ -30,65 +39,78 @@
         }
 
         button {
-            background-color: #4CAF50;
+            background: url('https://i.imgur.com/wzJnRCJ.png'); /* Minecraft Button Texture */
             color: white;
-            border: none;
+            border: 3px solid #2e2e2e;
             padding: 12px 24px;
             font-size: 18px;
             cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0;
+            font-family: 'Minecraft', sans-serif;
+            transition: transform 0.1s;
         }
 
         button:hover {
-            background-color: #388E3C;
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         #webcam-container {
             margin-top: 20px;
+            border: 5px solid #2e2e2e;
+            background: #000;
+            display: inline-block;
+            padding: 5px;
         }
 
         video {
-            border: 3px solid #4CAF50;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            height: 320px;
         }
 
         #label-container {
             margin-top: 20px;
             font-size: 20px;
-            font-weight: bold;
         }
 
         .prediction {
-            padding: 10px;
             font-size: 18px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid #4CAF50;
+            display: inline-block;
+            width: 250px;
             margin: 5px;
-            transition: transform 0.2s;
         }
 
-        .prediction:hover {
-            transform: scale(1.05);
+        /* Rolling Number Animation */
+        .rolling-number {
+            display: inline-block;
+            overflow: hidden;
+            width: 80px;
+            height: 24px;
+            font-size: 22px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .rolling-number span {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.5s ease-out;
         }
 
         footer {
-            background-color: #333;
+            background: #2e2e2e;
+            padding: 10px;
             color: white;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
             font-size: 14px;
+            border-top: 4px solid #4CAF50;
         }
     </style>
 </head>
 <body>
-    <header>Sign Language Translator</header>
+    <header>Minecraft Sign Language Translator</header>
 
     <div class="content">
         <button onclick="init()">Start Webcam</button>
@@ -118,7 +140,7 @@
             maxPredictions = model.getTotalClasses();
 
             // Setup webcam
-            webcam = new tmImage.Webcam(350, 350, true);
+            webcam = new tmImage.Webcam(320, 320, true);
             await webcam.setup();
             await webcam.play();
 
@@ -133,6 +155,18 @@
             for (let i = 0; i < maxPredictions; i++) {
                 let div = document.createElement("div");
                 div.className = "prediction";
+                
+                let nameSpan = document.createElement("span");
+                nameSpan.innerText = "Loading...";
+
+                let rollingNumber = document.createElement("div");
+                rollingNumber.className = "rolling-number";
+                let numSpan = document.createElement("span");
+                numSpan.innerText = "0%";
+                rollingNumber.appendChild(numSpan);
+
+                div.appendChild(nameSpan);
+                div.appendChild(rollingNumber);
                 labelContainer.appendChild(div);
             }
 
@@ -148,13 +182,24 @@
 
         async function predict() {
             const prediction = await model.predict(webcam.canvas);
-            labelContainer.innerHTML = "";
+            const predictions = document.querySelectorAll(".prediction");
 
-            prediction.forEach(pred => {
-                let div = document.createElement("div");
-                div.className = "prediction";
-                div.innerText = `${pred.className}: ${(pred.probability * 100).toFixed(2)}%`;
-                labelContainer.appendChild(div);
+            prediction.forEach((pred, i) => {
+                const nameSpan = predictions[i].querySelector("span:first-child");
+                const numSpan = predictions[i].querySelector(".rolling-number span");
+
+                nameSpan.innerText = pred.className;
+                
+                let newValue = (pred.probability * 100).toFixed(2) + "%";
+                let oldValue = numSpan.innerText;
+
+                if (newValue !== oldValue) {
+                    numSpan.style.transform = "translateY(-100%)";
+                    setTimeout(() => {
+                        numSpan.innerText = newValue;
+                        numSpan.style.transform = "translateY(0)";
+                    }, 200);
+                }
             });
         }
     </script>
