@@ -75,6 +75,9 @@
         #label-container {
             margin-top: 20px;
             font-size: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .prediction {
@@ -85,23 +88,25 @@
             display: inline-block;
             width: 250px;
             margin: 5px;
+            text-align: center;
         }
 
         /* Rolling Number Animation */
         .rolling-number {
             display: inline-block;
             overflow: hidden;
-            height: 1em;
+            height: 22px;
             font-size: 22px;
             font-weight: bold;
             position: relative;
         }
 
         .rolling-number span {
+            display: block;
             position: absolute;
             width: 100%;
             text-align: center;
-            transition: transform 0.5s ease-out;
+            transition: transform 0.5s ease-in-out;
         }
 
         /* Footer - Fixed at Bottom */
@@ -140,11 +145,17 @@
             }
             isWebcamRunning = true;
 
-            const modelURL = URL + "model.json";
-            const metadataURL = URL + "metadata.json";
+            try {
+                const modelURL = URL + "model.json";
+                const metadataURL = URL + "metadata.json";
 
-            model = await tmImage.load(modelURL, metadataURL);
-            maxPredictions = model.getTotalClasses();
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+            } catch (error) {
+                alert("Failed to load model. Ensure 'model.json' is available.");
+                console.error(error);
+                return;
+            }
 
             webcam = new tmImage.Webcam(320, 320, true);
             await webcam.setup();
@@ -192,7 +203,7 @@
                 const numSpan = predictions[i].querySelector(".rolling-number span");
 
                 nameSpan.innerText = pred.className;
-                
+
                 let newValue = (pred.probability * 100).toFixed(2) + "%";
                 let oldValue = numSpan.innerText;
 
@@ -201,7 +212,7 @@
                     setTimeout(() => {
                         numSpan.innerText = newValue;
                         numSpan.style.transform = "translateY(0)";
-                    }, 200);
+                    }, 300);
                 }
             });
         }
