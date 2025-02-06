@@ -60,9 +60,6 @@
             margin-top: 20px;
             font-size: 20px;
             font-weight: bold;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
         }
 
         .prediction {
@@ -72,31 +69,11 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin: 5px;
-            text-align: center;
-            width: 220px;
             transition: transform 0.2s;
         }
 
         .prediction:hover {
             transform: scale(1.05);
-        }
-
-        .rolling-number {
-            display: inline-block;
-            overflow: hidden;
-            height: 1.2em;
-            position: relative;
-            font-size: 20px;
-            font-weight: bold;
-            color: #4CAF50;
-        }
-
-        .rolling-number span {
-            display: block;
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            transition: transform 0.5s ease-in-out;
         }
 
         footer {
@@ -156,18 +133,6 @@
             for (let i = 0; i < maxPredictions; i++) {
                 let div = document.createElement("div");
                 div.className = "prediction";
-
-                let nameSpan = document.createElement("span");
-                nameSpan.innerText = "Loading...";
-
-                let rollingNumber = document.createElement("div");
-                rollingNumber.className = "rolling-number";
-                let numSpan = document.createElement("span");
-                numSpan.innerText = "0%";
-                rollingNumber.appendChild(numSpan);
-
-                div.appendChild(nameSpan);
-                div.appendChild(rollingNumber);
                 labelContainer.appendChild(div);
             }
 
@@ -183,26 +148,13 @@
 
         async function predict() {
             const prediction = await model.predict(webcam.canvas);
-            const predictions = document.querySelectorAll(".prediction");
+            labelContainer.innerHTML = "";
 
-            prediction.forEach((pred, i) => {
-                const nameSpan = predictions[i].querySelector("span:first-child");
-                const rollingNumber = predictions[i].querySelector(".rolling-number span");
-
-                nameSpan.innerText = pred.className;
-
-                let newValue = (pred.probability * 100).toFixed(2) + "%";
-                let oldValue = rollingNumber.innerText;
-
-                if (newValue !== oldValue) {
-                    rollingNumber.style.transition = "transform 0.3s ease-in-out";
-                    rollingNumber.style.transform = "translateY(-100%)";
-
-                    setTimeout(() => {
-                        rollingNumber.innerText = newValue;
-                        rollingNumber.style.transform = "translateY(0)";
-                    }, 300);
-                }
+            prediction.forEach(pred => {
+                let div = document.createElement("div");
+                div.className = "prediction";
+                div.innerText = ${pred.className}: ${(pred.probability * 100).toFixed(2)}%;
+                labelContainer.appendChild(div);
             });
         }
     </script>
