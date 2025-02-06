@@ -7,17 +7,23 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+    
     <style>
+        /* General Styling */
         body {
             font-family: 'Minecraft', sans-serif;
-            background: ('background.jpg') no-repeat center center fixed;
+            background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
             text-align: center;
             color: #fff;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
+        /* Header */
         header {
             background: url('dirt.jpg');
             padding: 20px;
@@ -28,10 +34,13 @@
             text-shadow: 3px 3px 2px #000;
         }
 
+        /* Main Content */
         .content {
+            flex: 1;
             padding: 20px;
         }
 
+        /* Button Styling */
         button {
             background: url('stone.png');
             color: white;
@@ -48,6 +57,7 @@
             transform: scale(1.1);
         }
 
+        /* Webcam Container */
         #webcam-container {
             margin-top: 20px;
             border: 5px solid #2e2e2e;
@@ -61,6 +71,7 @@
             height: 320px;
         }
 
+        /* Prediction Labels */
         #label-container {
             margin-top: 20px;
             font-size: 20px;
@@ -76,6 +87,7 @@
             margin: 5px;
         }
 
+        /* Rolling Number Animation */
         .rolling-number {
             display: inline-block;
             overflow: hidden;
@@ -92,16 +104,21 @@
             transition: transform 0.5s ease-out;
         }
 
+        /* Footer - Fixed at Bottom */
         footer {
             background: #2e2e2e;
             padding: 10px;
             color: white;
             font-size: 14px;
             border-top: 4px solid #4CAF50;
+            text-align: center;
+            position: relative;
+            width: 100%;
         }
     </style>
 </head>
 <body>
+
     <header>Sign Language Translator</header>
 
     <div class="content">
@@ -114,7 +131,6 @@
 
     <script>
         const URL = "./";
-
         let model, webcam, labelContainer, maxPredictions, isWebcamRunning = false;
 
         async function init() {
@@ -190,5 +206,6 @@
             });
         }
     </script>
+
 </body>
 </html>
