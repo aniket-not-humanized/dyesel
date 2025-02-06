@@ -6,99 +6,89 @@
     <title>Sign Language Translator</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-    <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
-    
     <style>
         /* General Styling */
         body {
-            font-family: 'Minecraft', sans-serif;
-            background: url('background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            text-align: center;
-            color: #fff;
+            font-family: 'Arial', sans-serif;
+            background-color: #eef2f3;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            text-align: center;
+            color: #333;
         }
 
-        /* Header */
         header {
-            background: url('dirt.jpg');
+            background-color: #4CAF50;
+            color: white;
             padding: 20px;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
-            border-bottom: 4px solid #2e2e2e;
-            color: white;
-            text-shadow: 3px 3px 2px #000;
         }
 
-        /* Main Content */
         .content {
-            flex: 1;
             padding: 20px;
         }
 
-        /* Button Styling */
         button {
-            background: url('stone.png');
+            background-color: #4CAF50;
             color: white;
-            border: 3px solid #2e2e2e;
+            border: none;
             padding: 12px 24px;
             font-size: 18px;
             cursor: pointer;
-            border-radius: 0;
-            font-family: 'Minecraft', sans-serif;
-            transition: transform 0.1s;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         button:hover {
-            transform: scale(1.1);
+            background-color: #388E3C;
+            transform: scale(1.05);
         }
 
-        /* Webcam Container */
         #webcam-container {
             margin-top: 20px;
-            border: 5px solid #2e2e2e;
-            background: #000;
-            display: inline-block;
-            padding: 5px;
         }
 
         video {
-            width: 320px;
-            height: 320px;
+            border: 3px solid #4CAF50;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Prediction Labels */
         #label-container {
             margin-top: 20px;
             font-size: 20px;
+            font-weight: bold;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .prediction {
-            font-size: 18px;
             padding: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 3px solid #4CAF50;
-            display: inline-block;
-            width: 250px;
+            font-size: 18px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin: 5px;
             text-align: center;
+            width: 220px;
+            transition: transform 0.2s;
         }
 
-        /* Rolling Number Animation */
+        .prediction:hover {
+            transform: scale(1.05);
+        }
+
         .rolling-number {
             display: inline-block;
             overflow: hidden;
-            height: 22px;
-            font-size: 22px;
-            font-weight: bold;
+            height: 1.2em;
             position: relative;
+            font-size: 20px;
+            font-weight: bold;
+            color: #4CAF50;
         }
 
         .rolling-number span {
@@ -109,21 +99,18 @@
             transition: transform 0.5s ease-in-out;
         }
 
-        /* Footer - Fixed at Bottom */
         footer {
-            background: #2e2e2e;
-            padding: 10px;
+            background-color: #333;
             color: white;
-            font-size: 14px;
-            border-top: 4px solid #4CAF50;
-            text-align: center;
-            position: relative;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
             width: 100%;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-
     <header>Sign Language Translator</header>
 
     <div class="content">
@@ -135,7 +122,8 @@
     <footer>&copy; 2025 Aniket Kumar Raj - Dyesel. All Rights Reserved.</footer>
 
     <script>
-        const URL = "./";
+        const URL = "./";  // Ensure model files are in the same folder
+
         let model, webcam, labelContainer, maxPredictions, isWebcamRunning = false;
 
         async function init() {
@@ -145,32 +133,30 @@
             }
             isWebcamRunning = true;
 
-            try {
-                const modelURL = URL + "model.json";
-                const metadataURL = URL + "metadata.json";
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
 
-                model = await tmImage.load(modelURL, metadataURL);
-                maxPredictions = model.getTotalClasses();
-            } catch (error) {
-                alert("Failed to load model. Ensure 'model.json' is available.");
-                console.error(error);
-                return;
-            }
+            // Load model
+            model = await tmImage.load(modelURL, metadataURL);
+            maxPredictions = model.getTotalClasses();
 
-            webcam = new tmImage.Webcam(320, 320, true);
+            // Setup webcam
+            webcam = new tmImage.Webcam(350, 350, true);
             await webcam.setup();
             await webcam.play();
 
+            // Clear previous webcam if exists
             document.getElementById("webcam-container").innerHTML = "";
             document.getElementById("webcam-container").appendChild(webcam.canvas);
 
+            // Create label container
             labelContainer = document.getElementById("label-container");
             labelContainer.innerHTML = "";
 
             for (let i = 0; i < maxPredictions; i++) {
                 let div = document.createElement("div");
                 div.className = "prediction";
-                
+
                 let nameSpan = document.createElement("span");
                 nameSpan.innerText = "Loading...";
 
@@ -185,6 +171,7 @@
                 labelContainer.appendChild(div);
             }
 
+            // Start prediction loop
             window.requestAnimationFrame(loop);
         }
 
@@ -200,23 +187,24 @@
 
             prediction.forEach((pred, i) => {
                 const nameSpan = predictions[i].querySelector("span:first-child");
-                const numSpan = predictions[i].querySelector(".rolling-number span");
+                const rollingNumber = predictions[i].querySelector(".rolling-number span");
 
                 nameSpan.innerText = pred.className;
 
                 let newValue = (pred.probability * 100).toFixed(2) + "%";
-                let oldValue = numSpan.innerText;
+                let oldValue = rollingNumber.innerText;
 
                 if (newValue !== oldValue) {
-                    numSpan.style.transform = "translateY(-100%)";
+                    rollingNumber.style.transition = "transform 0.3s ease-in-out";
+                    rollingNumber.style.transform = "translateY(-100%)";
+
                     setTimeout(() => {
-                        numSpan.innerText = newValue;
-                        numSpan.style.transform = "translateY(0)";
+                        rollingNumber.innerText = newValue;
+                        rollingNumber.style.transform = "translateY(0)";
                     }, 300);
                 }
             });
         }
     </script>
-
 </body>
 </html>
