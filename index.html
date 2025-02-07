@@ -3,69 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- 🔥 SEO Optimized Title & Description -->
-    <title>🚀 Dyesel Web Server | Start Your Own Server in Seconds!</title>
-    <meta name="description" content="🔥 Start your own web server instantly with Dyesel! Fast, lightweight, and user-friendly. Download now and get online in seconds!">
-    <meta name="author" content="Dyesel">
-
-    <!-- ✅ Open Graph (OG) Meta Tags (For Social Sharing) -->
-    <meta property="og:title" content="Dyesel Web Server - Start Your Own Server">
-    <meta property="og:description" content="🔥 Start your own web server instantly with Dyesel! Fast, lightweight, and user-friendly. Download now!">
-    <meta property="og:image" content="https://aniket-not-humanized.github.io/dyesel/preview.png">
-    <meta property="og:url" content="https://aniket-not-humanized.github.io/dyesel/">
-    <meta property="og:type" content="website">
-
-    <!-- ✅ Twitter Card Meta Tags (For Twitter Sharing) -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Dyesel Web Server - Start Your Own Server">
-    <meta name="twitter:description" content="🔥 Start your own web server instantly with Dyesel! Fast, lightweight, and user-friendly. Download now!">
-    <meta name="twitter:image" content="https://aniket-not-humanized.github.io/dyesel/preview.png">
-
-    <!-- ✅ Google Site Verification -->
-    <meta name="google-site-verification" content="1lc_VOZTFCVnhLHAKJt88y3axkouujLGcDm2k-OiBGA" />
-
-    <!-- ✅ Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-    <!-- ✅ Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5301013846499941"
-     crossorigin="anonymous"></script>
-
+    <title>Dyesel: The Fastest Way to Start a Web Server</title>
     <style>
+.button-49,
+.button-49:after {
+  width: 200px;
+  height: 76px;
+  line-height: 78px;
+  font-size: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  background: linear-gradient(45deg, transparent 5%, #FF013C 5%);
+  border: 0;
+  color: #fff;
+  letter-spacing: 2px;
+  box-shadow: 6px 0px 0px #00E6F6;
+  outline: transparent;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.button-49:after {
+  content: 'Download Now';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #FF013C 5%);
+  text-shadow: -3px -3px 0px #F8F005, 3px 3px 0px #00E6F6;
+  clip-path: inset(50% 50% 50% 50%);
+}
+
+.button-49:hover:after {
+  animation: glitch 1s steps(2, end);
+}
+
+@keyframes glitch {
+  0% { clip-path: inset(80% -6px 0 0); transform: translate(-20px, -10px); }
+  10% { clip-path: inset(50% -6px 30% 0); transform: translate(10px, 10px); }
+  20% { clip-path: inset(10% -6px 85% 0); transform: translate(-10px, 10px); }
+  30% { clip-path: inset(40% -6px 43% 0); transform: translate(0px, 5px); }
+  40% { clip-path: inset(80% -6px 5% 0); transform: translate(-5px, 0px); }
+  50% { clip-path: inset(50% -6px 30% 0); transform: translate(5px, 0px); }
+  60% { clip-path: inset(10% -6px 85% 0); transform: translate(5px, 10px); }
+  70% { clip-path: inset(40% -6px 43% 0); transform: translate(-10px, 10px); }
+  80% { clip-path: inset(80% -6px 5% 0); transform: translate(20px, -10px); }
+  90% { clip-path: inset(50% -6px 30% 0); transform: translate(-10px, 0px); }
+  100% { clip-path: inset(50% 50% 50% 50%); transform: translate(0); }
+}
+
+@media (min-width: 768px) {
+  .button-49,
+  .button-49:after {
+    width: 220px;
+    height: 86px;
+    line-height: 88px;
+  }
+}
+
+        /* General Styling */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f1f1f1;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
+            color: #333;
         }
         header {
             background-color: #4CAF50;
             color: white;
             text-align: center;
-            padding: 20px 0;
-            font-size: 2.5em;
-            border-bottom: 5px solid #333;
+            padding: 15px;
+            font-size: 1.5em;
+            transition: background 0.3s;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header:hover {
+            background-color: #3a8c3f;
         }
         .container {
             width: 80%;
             max-width: 900px;
-            margin: 30px auto;
+            margin: 50px auto;
             background-color: white;
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        h1 {
-            font-size: 2.5em;
-            color: #333;
+        h1, h2 {
+            color: #222;
         }
         p {
             font-size: 1.2em;
-            color: #555;
+            line-height: 1.6;
         }
-        button {
+        .hover-effect:hover {
+            color: #4CAF50;
+            font-size: 1.3em;
+            transition: 0.3s ease-in-out;
+        }
+        .main-button {
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -74,48 +119,212 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            text-decoration: none;
-            margin: 10px;
         }
-        button:hover {
+        .main-button:hover {
             background-color: #45a049;
         }
+        .features {
+            text-align: left;
+            margin-top: 30px;
+        }
+        .features ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .features li {
+            background: url('https://cdn-icons-png.flaticon.com/512/845/845646.png') no-repeat left center;
+            background-size: 20px;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .dynamic-section {
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        .scrolling-text {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: scrollText 15s linear infinite;
+            font-size: 1.2em;
+            color: #4CAF50;
+        }
+        @keyframes scrollText {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
     </style>
-
     <script>
-        function goToInfo() {
-            window.open('info.html', '_blank');
-        }
+let facts = [
+    "The first website ever created is still online!",
+    "Web servers communicate using HTTP.",
+    "Dyesel is one of the easiest ways to start a local server!",
+    "The internet was first called the 'Galactic Network'.",
+    "A computer mouse was originally called an 'X-Y Position Indicator'.",
+    "The World Wide Web was invented by Tim Berners-Lee in 1989.",
+    "The first domain name ever registered was Symbolics.com in 1985.",
+    "There are over 1.8 billion websites on the internet today.",
+    "The first email was sent by Ray Tomlinson in 1971.",
+    "Websites are hosted on servers, which are just computers running special software.",
+    "The most popular web server software is Apache, followed by Nginx.",
+    "Google processes over 3.5 billion searches per day.",
+    "HTTP stands for Hypertext Transfer Protocol.",
+    "HTTPS is the secure version of HTTP, using encryption to protect data.",
+    "Web servers can be hosted locally or on cloud platforms like AWS.",
+    "The first web browser was called WorldWideWeb (later renamed Nexus).",
+    "Every website has an IP address behind its domain name.",
+    "The '404 Not Found' error means a requested page doesn't exist.",
+    "The deep web is much larger than the surface web.",
+    "Websites use cookies to store small amounts of user data.",
+    "JavaScript is the most commonly used programming language on the web.",
+    "A single Google search uses more computing power than NASA had in 1969.",
+    "Facebook was originally called 'TheFacebook'.",
+    "The first ever YouTube video was titled 'Me at the zoo'.",
+    "Twitter's original name was 'Twttr'.",
+    "The term 'spam' for unwanted emails comes from a Monty Python sketch.",
+    "The first online advertisement appeared in 1994.",
+    "The longest domain name ever is 63 characters long.",
+    "There are more than 330 million domain names registered worldwide.",
+    "Web pages load in parts, starting with HTML, then CSS, then JavaScript.",
+    "The fastest-growing website in history was ChatGPT in 2022.",
+    "DDoS attacks can take down web servers by overwhelming them with traffic.",
+    "Most web servers run Linux, not Windows.",
+    "Google’s first server was built using Lego bricks as a case.",
+    "The internet runs on millions of interconnected servers.",
+    "Every minute, 500 hours of video are uploaded to YouTube.",
+    "TikTok was the most downloaded app in 2021.",
+    "A single webpage can have thousands of lines of code.",
+    "The first blog was created in 1994.",
+    "Websites with '.gov' are government-run.",
+    "HTML stands for Hypertext Markup Language.",
+    "CSS controls the design and layout of web pages.",
+    "The first e-commerce transaction was in 1994.",
+    "Google originally started as a research project called 'Backrub'.",
+    "The first version of Windows was released in 1985.",
+    "Web hosting services store website data on servers.",
+    "Every second, 77 new websites go online.",
+    "Dark mode reduces blue light exposure, helping to reduce eye strain.",
+    "Elon Musk's SpaceX uses Starlink to provide internet worldwide.",
+    "Blockchain technology could change how the internet works in the future.",
+    "IPv6 was introduced to replace IPv4, which was running out of addresses.",
+    "In 2019, half of the world’s population was online.",
+    "Google once went down for 5 minutes, and global internet traffic dropped by 40%.",
+    "A favicon is the small icon that appears in browser tabs.",
+    "Most websites use caching to load faster.",
+    "Web browsers store browsing history in cache files.",
+    "The 'Incognito Mode' in browsers doesn’t actually make you anonymous.",
+    "A website's speed affects its search ranking on Google.",
+    "The first mobile web browser was developed in 1997.",
+    "Web pages can be dynamic (interactive) or static (fixed content).",
+    "Chatbots use AI to assist users on websites.",
+    "The Internet of Things (IoT) connects everyday devices to the web.",
+    "JavaScript frameworks like React and Vue make web apps more dynamic.",
+    "Progressive Web Apps (PWAs) work offline and behave like native apps.",
+    "Google Chrome is the most popular web browser today.",
+    "Firefox was originally called 'Phoenix'.",
+    "The term 'meme' was coined by Richard Dawkins in 1976.",
+    "The first search engine was called Archie, launched in 1990.",
+    "The 'robots.txt' file tells search engines which pages to ignore.",
+    "Hackers use SQL injection to exploit website vulnerabilities.",
+    "The Wayback Machine allows you to see old versions of websites.",
+    "Most website traffic comes from mobile devices.",
+    "A 'breadcrumb' is a navigation aid that helps users see their page path.",
+    "CDNs (Content Delivery Networks) speed up websites globally.",
+    "More than 50% of email traffic is spam.",
+    "Website domains are managed by ICANN (Internet Corporation for Assigned Names and Numbers).",
+    "HTML5 introduced video and audio support without plugins.",
+    "Google’s homepage has remained minimalistic since the beginning.",
+    "The first emoji appeared in 1999 in Japan.",
+    "Web developers use GitHub for version control.",
+    "Many large companies use their own private web servers.",
+    "Websites can be hosted on shared, VPS, or dedicated servers.",
+    "A '403 Forbidden' error means access is restricted.",
+    "More than 90% of web traffic is encrypted today.",
+    "Search engine optimization (SEO) helps websites rank higher.",
+    "CAPTCHAs prevent bots from accessing websites.",
+    "The internet uses undersea fiber-optic cables to connect continents.",
+    "You can find the IP address of a website using the 'ping' command.",
+    "Tor is a browser used to access the dark web.",
+    "Web security certificates use SSL and TLS for encryption.",
+    "The internet runs on over 75 million servers worldwide.",
+    "The first banner ad had a click-through rate of 44%.",
+    "Phishing is the most common type of cyber attack.",
+    "Google has a secret dinosaur game when offline.",
+    "The longest uninterrupted web server uptime record is over 20 years.",
+    "Some websites store data in decentralized blockchain networks.",
+    "There are more internet-connected devices than people on Earth.",
+    "A single data center can consume as much electricity as a small city."
+];
 
-        function downloadApp() {
-            var infoTab = window.open('info.html', '_blank');
-            setTimeout(function() {
-                window.location.href = 'Dyesel.exe'; // Replace with actual file path
-            }, 1000);
+        function showRandomFact() {
+            let factIndex = Math.floor(Math.random() * facts.length);
+            document.getElementById("randomFact").innerText = facts[factIndex];
         }
+        document.addEventListener('mousemove', function(event) {
+            let x = (event.clientX / window.innerWidth) * 100;
+            let y = (event.clientY / window.innerHeight) * 100;
+            document.body.style.backgroundPosition = `${x}% ${y}%`;
+        });
+function downloadAndRedirect() {
+    // Create a temporary link element for downloading
+    let downloadLink = document.createElement("a");
+    downloadLink.href = "dyesel.exe"; // Replace with actual Dyesel download link
+    downloadLink.download = "dyesel.exe"; // Suggested filename
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+
+    // Redirect to info.html after a short delay
+    setTimeout(() => {
+        window.location.href = "info.html";
+    }, 1000); // 1-second delay to ensure download starts
+}
     </script>
 </head>
-<body>
-
+<body onload="showRandomFact()">
     <header>
-        <h1>Welcome to Dyesel Web Server</h1>
+        <h1>Dyesel Web Server</h1>
     </header>
-
     <div class="container">
-        <h2>Start Your Web Server Easily</h2>
-        <p>Welcome to Dyesel, the easiest way to start your own web server. Follow the steps to get your server running in no time!</p>
-
-        <p><strong>Important!</strong> Before you start, make sure to read the <a href="info.html" style="color: #4CAF50;">Important Notes</a> to ensure everything is set up properly!</p>
-
-        <p><button onclick="goToInfo()">Go to Notes</button></p>
-        <p><button onclick="downloadApp()">Download Dyesel</button></p>
+        <h2 class="hover-effect">The Simplest Way to Start Your Own Web Server</h2>
+        <p class="hover-effect">Dyesel allows you to set up a local web server with a single click. No complex configurations, just pure speed!</p>
+	<button class="button-49" role="button" onclick="downloadAndRedirect()">Download</button>
+        <h2>Why Choose Dyesel?</h2>
+        <div class="features">
+            <ul>
+                <li>Ultra-fast server startup</li>
+                <li>No complex configuration needed</li>
+                <li>Secure and reliable</li>
+                <li>Easily accessible from any device</li>
+                <li>Lightweight and optimized for performance</li>
+            </ul>
+        </div>
+        <div class="dynamic-section">
+            <h3>Did You Know?</h3>
+            <p id="randomFact"></p>
+            <button class="main-button" onclick="showRandomFact()">Show Another Fact</button>
+        </div>
+        <div class="dynamic-section">
+            <h3>What is a Web Server?</h3>
+            <p>A web server is a software application that delivers web pages to users when they request them through a browser.</p>
+            <h3>Why Use a Local Server?</h3>
+            <p>Running a local server helps developers test websites before making them live on the internet.</p>
+            <h3>How Dyesel Works</h3>
+            <p>Dyesel simplifies server setup by allowing you to launch a web server instantly, without dealing with configuration files.</p>
+        </div>
+        <div class="dynamic-section">
+            <h3>Common HTTP Status Codes</h3>
+            <ul>
+                <li><strong>200 OK</strong> - Everything is working fine.</li>
+                <li><strong>404 Not Found</strong> - The requested page does not exist.</li>
+                <li><strong>500 Internal Server Error</strong> - Something went wrong on the server.</li>
+            </ul>
+        </div>
+        <div class="scrolling-text">
+            Web servers power the internet. Dyesel makes it easier than ever to run one. Try it today!
+        </div>
     </div>
-    <iframe
-    src="https://app.droxy.ai/guest-agent/679e477108566f55d3028aa4"
-    width="100%"
-    height="800px"
-    frameborder="0">
-</iframe>
-
 </body>
 </html>
