@@ -1,0 +1,36 @@
+#include <Servo.h>
+
+Servo fireServo;  
+const int irSensor = 8;  // IR sensor on D8
+const int servoPin = 9;   // Servo on D9
+const int buzzer = 13;    // Buzzer on D13
+
+void setup() {
+  pinMode(irSensor, INPUT);
+  pinMode(buzzer, OUTPUT);
+  fireServo.attach(servoPin);
+  fireServo.write(90);  // Start at middle
+  Serial.begin(9600);
+}
+
+void loop() {
+  int fireDetected = digitalRead(irSensor);
+
+  if (fireDetected == LOW) {  // Fire detected
+    Serial.println("🔥 Fire Detected!");
+    
+    fireServo.write(0);   // Move servo
+    digitalWrite(buzzer, HIGH);  // Turn buzzer ON
+    delay(1000);  // Beep for 1 sec
+    
+    digitalWrite(buzzer, LOW);  // Turn buzzer OFF
+    delay(1000);
+    
+    fireServo.write(90);  // Reset servo
+  } else {
+    Serial.println("✅ No Fire.");
+    digitalWrite(buzzer, LOW);  // Ensure buzzer is off
+  }
+
+  delay(500);
+}
