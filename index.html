@@ -282,6 +282,13 @@ function downloadAndRedirect() {
     }, 1000); // 1-second delay to ensure download starts
 }
     </script>
+	<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+<script>
+  window.onload = function() {
+    twemoji.parse(document.body);
+  };
+</script>
+
 </head>
 <body onload="showRandomFact()">
     <header>
