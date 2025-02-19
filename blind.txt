@@ -1,0 +1,42 @@
+#define TRIG_PIN 9    // Trigger pin of HC-SR04
+#define ECHO_PIN 10   // Echo pin of HC-SR04
+#define BUZZER_PIN 13 // Buzzer pin
+
+void setup() {
+    pinMode(TRIG_PIN, OUTPUT);
+    pinMode(ECHO_PIN, INPUT);
+    pinMode(BUZZER_PIN, OUTPUT);
+    Serial.begin(9600); // Start serial monitor
+}
+
+void loop() {
+    long duration;
+    float distance;
+
+    // Send ultrasonic pulse
+    digitalWrite(TRIG_PIN, LOW);
+    delayMicroseconds(2);
+    digitalWrite(TRIG_PIN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(TRIG_PIN, LOW);
+
+    // Read the echo time
+    duration = pulseIn(ECHO_PIN, HIGH);
+
+    // Convert time to distance
+    distance = (duration * 0.0343) / 2;
+
+    // Print distance in Serial Monitor
+    Serial.print("Distance: ");
+    Serial.print(distance);
+    Serial.println(" cm");
+
+    // If the object is at or below 10 cm, turn on buzzer
+    if (distance <= 10) {  
+        digitalWrite(BUZZER_PIN, HIGH); // Beep!
+    } else {
+        digitalWrite(BUZZER_PIN, LOW); // Stay silent
+    }
+
+    delay(100); // Small delay before next reading
+}
